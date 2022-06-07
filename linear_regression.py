@@ -53,11 +53,3 @@ class linear_regression:
         plt.plot(h)
         plt.show()
         return self.loss(X, Y)
-
-
-
-
-
-
-
-

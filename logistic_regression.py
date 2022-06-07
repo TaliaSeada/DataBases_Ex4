@@ -102,4 +102,3 @@ class logistic_regression:
         plt.plot(Y)
         plt.plot(h)
         plt.show()
-
