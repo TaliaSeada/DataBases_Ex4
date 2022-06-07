@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 class linear_regression:
     def __init__(self, data, learning_rate):
@@ -25,7 +25,7 @@ class linear_regression:
         ERR = 0
         while True:
             ERR_new = self.loss(X, Y)
-            if abs(ERR - ERR_new) < 0.001:
+            if abs(ERR - ERR_new) < 0.01:
                 break
             ERR = ERR_new
             grad = self.gradients(X, Y)
@@ -44,6 +44,10 @@ class linear_regression:
 
         print("Predict: ", X.dot(self.W))
         print("Actual: ", Y)
+
+        plt.plot(Y)
+        plt.plot(X.dot(self.W))
+        plt.show()
         return self.loss(X, Y)
 
 if __name__ == '__main__':
