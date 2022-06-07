@@ -1,6 +1,7 @@
 # df = sqlContext.read.option("multiline", "true").json("books.json")
 # df.show()
 
+# Question 1:
 # # SQL
 # df.registerTempTable("f_table")
 # start_with_f = sqlContext.sql("SELECT title, author, (2022 - year) as `number of years since published` FROM f_table WHERE author LIKE 'F%'")
@@ -12,3 +13,8 @@
 # start_F = start_F.filter("author like 'F%'")
 # final = start_F.select("title", "author", "number of years since published")
 # final.show()
+
+# Question 2:
+# english_books = df.filter("language LIKE 'English'")
+# english_books = english_books.groupBy("author").avg("pages")
+# english_books.show()
