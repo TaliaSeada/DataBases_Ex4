@@ -1,5 +1,9 @@
+import math
+import random
+
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 class linear_regression:
     def __init__(self, data, learning_rate):
@@ -8,10 +12,12 @@ class linear_regression:
         self.W = np.zeros(len(data[0]) - 1)
 
     def gradients(self, x, y):
-        return np.mean(x.T * (x.dot(self.W) - y), axis=1)
+        h = x.dot(self.W)
+        return np.mean(x.T * (h - y), axis=1)
 
     def loss(self, x, y):
-        return np.mean((x.dot(self.W) - y) ** 2) / 2
+        h = x.dot(self.W)
+        return np.mean((h - y) ** 2) / 2
 
     def fit(self):
         Y = []
@@ -42,36 +48,18 @@ class linear_regression:
         X = np.array(X)
         Y = np.array(Y)
 
-        print("Predict: ", X.dot(self.W))
+        h = X.dot(self.W)
+        print("Predict: ", h)
         print("Actual: ", Y)
 
         plt.plot(Y)
-        plt.plot(X.dot(self.W))
+        plt.plot(h)
         plt.show()
         return self.loss(X, Y)
 
-if __name__ == '__main__':
-    # make the data
-    data_txt = open("prices.txt")
-    data = []
-    for line in data_txt:
-        line = line.split(",")
-        for j in range(len(line)):
-            line[j] = float(line[j])
-        data.append(line)
 
-    # linear regression
-    # 75% for train
-    train = data[:int(len(data) * 0.75)]
-    # 25% for test
-    test = data[int(len(data) * 0.75):]
-    lr = linear_regression(train, 0.0001)
 
-    lr.fit()
-    mse = lr.predict(test)
-    print("MSE = ", mse)
 
-    # logistic regression
 
 
 
